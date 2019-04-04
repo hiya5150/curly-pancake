@@ -21,8 +21,8 @@ export class RandomDadComponent implements OnInit {
 }
     updateJoke(): void {
     this.jokeGetter.getRandomJoke().subscribe(res => {
-    this.randomJoke = res.randomJoke;
-    console.log(res);
+    this.randomJoke = res.joke;
+
     });
     }
 }

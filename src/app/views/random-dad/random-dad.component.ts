@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CurlyService} from '../../models/curly.service';
-import {ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-random-dad',
@@ -11,19 +11,19 @@ export class RandomDadComponent implements OnInit {
   randomJoke: string;
 
 
-  constructor(private jokeGetter: CurlyService, private route: ActivatedRoute) {
-    this.route.paramMap.subscribe(params => {
-      this.randomJoke = params.get('joke');
-    });
+  constructor(private jokeGetter: CurlyService) {
+    this.updateJoke();
   }
 
 
   ngOnInit() {
-    this.jokeGetter.getRandomJoke().subscribe(
-      (result) => {
-        this.randomJoke = result.message;
-      }
-    );
-  }
 
 }
+    updateJoke(): void {
+    this.jokeGetter.getRandomJoke().subscribe(res => {
+    this.randomJoke = res.randomJoke;
+    console.log(res);
+    });
+    }
+}
+
